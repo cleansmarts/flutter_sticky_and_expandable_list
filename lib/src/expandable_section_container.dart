@@ -183,9 +183,7 @@ class RenderExpandableSectionContainer extends RenderBox
     markNeedsLayout();
     if (attached) {
       oldValue.widget.controller?.removeListener(markNeedsLayout);
-      if (_sticky) {
-        _scrollable.widget.controller?.addListener(markNeedsLayout);
-      }
+      _scrollable.widget.controller?.addListener(markNeedsLayout);
     }
   }
 
@@ -241,9 +239,7 @@ class RenderExpandableSectionContainer extends RenderBox
   @override
   void attach(PipelineOwner owner) {
     super.attach(owner);
-    if (sticky) {
-      _scrollable.widget.controller?.addListener(markNeedsLayout);
-    }
+    _scrollable.widget.controller?.addListener(markNeedsLayout);
   }
 
   @override
@@ -367,10 +363,10 @@ class RenderExpandableSectionContainer extends RenderBox
     if (_sticky && isStickyChild && sliverListOffset > minScrollOffset) {
       currHeaderOffset = sliverListOffset - minScrollOffset;
     }
-   // print(
-   //     "index:$listIndex currHeaderOffset:${currHeaderOffset.toStringAsFixed(2)}" +
-   //         " sliverListOffset:${sliverListOffset.toStringAsFixed(2)}" +
-   //         " [$minScrollOffset,$maxScrollOffset] size:${content.size.height}");
+    // print(
+    //     "index:$listIndex currHeaderOffset:${currHeaderOffset.toStringAsFixed(2)}" +
+    //         " sliverListOffset:${sliverListOffset.toStringAsFixed(2)}" +
+    //         " [$minScrollOffset,$maxScrollOffset] size:${content.size.height}");
     positionChild(header, Offset(0, min(currHeaderOffset, headerMaxOffset)));
 
     //callback header hide percent
@@ -406,7 +402,7 @@ class RenderExpandableSectionContainer extends RenderBox
     _renderSliver.visitChildren((renderObject) {
       var containerParentData =
           renderObject.parentData as SliverMultiBoxAdaptorParentData;
-     // print("visitChildren $containerParentData");
+      // print("visitChildren $containerParentData");
 
       while (
           _controller.containerOffsets.length <= containerParentData.index!) {
@@ -455,7 +451,8 @@ class RenderExpandableSectionContainer extends RenderBox
       double currOffset = _controller.containerOffsets[i]?.toDouble() ?? 0;
       double nextOffset = _controller.containerOffsets[i + 1]?.toDouble() ?? 0;
       if (currOffset > nextOffset) {
-        _refreshContainerLayoutOffsets("offset invalid: $currOffset->$nextOffset");
+        _refreshContainerLayoutOffsets(
+            "offset invalid: $currOffset->$nextOffset");
         break;
       }
     }
